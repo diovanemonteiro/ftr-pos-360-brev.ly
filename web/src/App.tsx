@@ -4,15 +4,22 @@
 // import heroImg from './assets/hero.png'
 // import './App.css'
 
+import { Routes, Route } from "react-router-dom"
+
 import { HomePage } from "@/pages/home.tsx";
+import {Redirect} from "@/pages/redirect.tsx";
+import {NotFound} from "@/pages/not-found.tsx";
 
 function App() {
   return (
     <>
         <main className="h-dvh flex flex-col items-center justify-center">
-            <HomePage />
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:shortUrl" element={<Redirect />} />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
         </main>
-
     </>
   )
 }
