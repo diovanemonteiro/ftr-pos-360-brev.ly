@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx"
 import brevlyLogo from "@/assets/logo.svg"
+import { DownloadSimpleIcon } from "@phosphor-icons/react"
 
 export function HomePage() {
 
@@ -28,9 +29,9 @@ export function HomePage() {
                     <img src={brevlyLogo} alt="Brev.ly Logo" className="w-24 h-12" />
                 </header>
 
-                <div className="w-full flex flex-row gap-4">
+                <div className="w-full flex flex-col sm:flex-row gap-4">
 
-                    <section className="w-[380px] flex-none mb-8 rounded-lg p-6 shadow-sm bg-white">
+                    <section className="w-auto sm:w-[380px] flex-none mb-8 rounded-lg p-6 shadow-sm bg-white">
                         <h2 className="mb-4 text-lg font-semibold text-gray-800">
                             Novo link
                         </h2>
@@ -45,13 +46,13 @@ export function HomePage() {
                                 label="URL encurtada"
                                 placeholder="meu-link"
                             />
-                            <Button type="submit" className="w-full" variant="primary">
+                            <Button type="submit" className="w-full" variant="primary" disabled>
                                 Encurtar URL
                             </Button>
                         </form>
                     </section>
 
-                    <section className="flex-1 rounded-lg p-6 shadow-sm bg-white">
+                    <section className="w-auto sm:flex-1 rounded-lg p-6 shadow-sm bg-white">
                         <div className="mb-4 flex items-center justify-between">
                             <h2 className="text-lg font-semibold text-gray-800">
                                 Meus links
@@ -67,7 +68,7 @@ export function HomePage() {
                                 onClick={handleExport}
                                 className="text-xs"
                             >
-                                Exportar CSV
+                                <DownloadSimpleIcon size={14} /> Exportar CSV
                             </Button>
                         </div>
 
