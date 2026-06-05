@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/*@theme {*/
+/*  --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+
+/*  --color-blue-base: #2c4681;*/
+/*  --color-blue-dark: #2c4091;*/
+/*  --color-white: #ffffff;*/
+/*  --color-gray-100: #f9f9fb;*/
+/*  --color-gray-200: #b9b9c0;*/
+/*  --color-gray-300: #c0c0ca;*/
+/*  --color-gray-400: #7474ae;*/
+/*  --color-gray-500: #1f2025;*/
+/*  --color-danger: #b02c40;*/
+
+/*  --text-xl: 1.5rem;*/
+/*  --text-xl--line-height: 2rem;*/
+/*  --text-lg: 1.125rem;*/
+/*  --text-lg--line-height: 1.75rem;*/
+/*  --text-md: 0.875rem;*/
+/*  --text-md--line-height: 1.25rem;*/
+/*  --text-sm: 0.75rem;*/
+/*  --text-sm--line-height: 1rem;*/
+/*  --text-xs: 0.625rem;*/
+/*  --text-xs--line-height: 0.875rem;*/
+/*}*/
+
+/** {*/
+/*  box-sizing: border-box;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+/*body {*/
+/*  background-color: var(--color-gray-100);*/
+/*  color: var(--color-gray-500);*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*}*/
