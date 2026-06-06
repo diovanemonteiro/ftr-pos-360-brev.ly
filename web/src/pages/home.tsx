@@ -1,11 +1,13 @@
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx"
+import { LinkList } from "@/components/link-list.tsx"
+import { LinkListItem } from "@/components/link-list-item.tsx"
 import brevlyLogo from "@/assets/logo.svg"
-import { DownloadSimpleIcon } from "@phosphor-icons/react"
+import { DownloadSimpleIcon, LinkBreakIcon, LinkSimpleBreakIcon } from "@phosphor-icons/react"
 
 export function HomePage() {
 
-    const data = []
+    const data = { links: []}
     const isLoading = false
     const isExporting = false
 
@@ -31,8 +33,8 @@ export function HomePage() {
 
                 <div className="w-full flex flex-col sm:flex-row gap-4">
 
-                    <section className="w-auto sm:w-[380px] flex-none mb-8 rounded-lg p-6 shadow-sm bg-white">
-                        <h2 className="mb-4 text-lg font-semibold text-gray-800">
+                    <section className="w-auto sm:w-[380px] flex-none space-y-6 rounded-lg p-6 shadow-sm bg-white">
+                        <h2 className="text-lg font-bold text-gray-600">
                             Novo link
                         </h2>
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -44,52 +46,26 @@ export function HomePage() {
                             <Input
                                 id="shortUrl"
                                 label="URL encurtada"
-                                placeholder="meu-link"
+                                prefix="brev.ly/"
+                                className="pl-1!"
                             />
-                            <Button type="submit" className="w-full" variant="primary" disabled>
-                                Encurtar URL
+                            <Button
+                                type="submit"
+                                className="w-full h-12"
+                                variant="primary"
+                            >
+                                Salvar Link
                             </Button>
                         </form>
                     </section>
 
-                    <section className="w-auto sm:flex-1 rounded-lg p-6 shadow-sm bg-white">
-                        <div className="mb-4 flex items-center justify-between">
-                            <h2 className="text-lg font-semibold text-gray-800">
-                                Meus links
-                                {data?.total !== undefined ? (
-                                    <span className="ml-2 text-sm font-normal text-gray-400">
-                                        ({data.total})
-                                    </span>
-                                ) : null}
-                            </h2>
-                            <Button
-                                variant="secondary"
-                                loading={isExporting}
-                                onClick={handleExport}
-                                className="text-xs"
-                            >
-                                <DownloadSimpleIcon size={14} /> Exportar CSV
-                            </Button>
-                        </div>
-
-                        {isLoading ? (
-                            <div className="flex justify-center py-8">
-                                <span className="size-6 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
-                            </div>
-                        ) : data?.links?.length === 0 ? (
-                            <p className="py-8 text-center text-sm text-gray-400">
-                                Nenhum link cadastrado ainda.
-                            </p>
-                        ) : (
-                            <ul className="flex flex-col gap-3">
-                                {data?.links?.map((link) => (
-                                    <li key={link.id}>
-                                        <LinkListItem link={link} />
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </section>
+                    <LinkList
+                        data={data}
+                        isLoading={isLoading}
+                        isExporting={isExporting}
+                        onExport={handleExport}
+                        renderItem={(link) => <LinkListItem link={link} />}
+                    />
 
                 </div>
             </div>
