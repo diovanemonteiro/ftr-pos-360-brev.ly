@@ -5,7 +5,16 @@ import brevlyLogo from "@/assets/logo.svg"
 
 export function HomePage() {
 
-    const data = { links: [] }
+    const data = {
+        total: 5,
+        links: [
+            { id: 1, originalUrl: "https://www.google.com.br", shortUrl: "google", accessCount: 142 },
+            { id: 2, originalUrl: "https://www.github.com/diovane", shortUrl: "meu-github", accessCount: 87 },
+            { id: 3, originalUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", shortUrl: "yt-video", accessCount: 310 },
+            { id: 4, originalUrl: "https://tailwindcss.com/docs/installation", shortUrl: "tw-docs", accessCount: 23 },
+            { id: 5, originalUrl: "https://react.dev/learn", shortUrl: "react-learn", accessCount: 56 },
+        ],
+    }
     const isLoading = false
     const isExporting = false
 
@@ -18,31 +27,26 @@ export function HomePage() {
     }
 
   return (
-    <>
-        <div className="w-5xl">
+    <div className="w-full max-w-5xl mx-auto px-4 py-8 sm:py-12">
 
-            <div className="px-4 py-12 space-y-6">
+        <header className="mb-6">
+            <img src={brevlyLogo} alt="Brev.ly Logo" className="w-24 h-12" />
+        </header>
 
-                <header>
-                    <img src={brevlyLogo} alt="Brev.ly Logo" className="w-24 h-12" />
-                </header>
+        <div className="flex flex-col sm:flex-row gap-4 items-start">
 
-                <div className="w-full flex flex-col sm:flex-row gap-4">
+            <NewLink onSubmit={handleSubmit} />
 
-                    <NewLink onSubmit={handleSubmit} />
-
-                    <LinkList
-                        data={data}
-                        isLoading={isLoading}
-                        isExporting={isExporting}
-                        onExport={handleExport}
-                        renderItem={(link) => <LinkListItem link={link} />}
-                    />
-
-                </div>
-            </div>
+            <LinkList
+                data={data}
+                isLoading={isLoading}
+                isExporting={isExporting}
+                onExport={handleExport}
+                renderItem={(link) => <LinkListItem link={link} />}
+            />
 
         </div>
-    </>
+
+    </div>
   )
 }
