@@ -1,14 +1,10 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button.tsx"
 import { CopyIcon, TrashIcon, ChartBarIcon } from "@phosphor-icons/react"
+import type { Link } from "@/types/link.ts"
 
 type LinkListItemProps = {
-    link: {
-        id: string | number
-        originalUrl: string
-        shortUrl: string
-        accessCount?: number
-    }
+    link: Link
     onDelete?: (id: string | number) => void
 }
 

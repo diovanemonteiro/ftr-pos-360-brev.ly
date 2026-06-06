@@ -1,12 +1,6 @@
 import { Button } from "@/components/ui/button.tsx"
 import { DownloadSimpleIcon, LinkIcon } from "@phosphor-icons/react"
-
-type Link = {
-    id: string | number
-    originalUrl: string
-    shortUrl: string
-    accessCount?: number
-}
+import type { Link } from "@/types/link.ts"
 
 type LinkListProps = {
     data?: { links?: Link[]; total?: number }
