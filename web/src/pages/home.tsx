@@ -1,23 +1,19 @@
-import { Input } from "@/components/ui/input.tsx";
-import { Button } from "@/components/ui/button.tsx"
+import { NewLink } from "@/components/new-link.tsx"
 import { LinkList } from "@/components/link-list.tsx"
 import { LinkListItem } from "@/components/link-list-item.tsx"
 import brevlyLogo from "@/assets/logo.svg"
-import { DownloadSimpleIcon, LinkBreakIcon, LinkSimpleBreakIcon } from "@phosphor-icons/react"
 
 export function HomePage() {
 
-    const data = { links: []}
+    const data = { links: [] }
     const isLoading = false
     const isExporting = false
 
-    function handleSubmit(event)
-    {
+    function handleSubmit(data: { originalUrl: string; shortUrl: string }) {
 
     }
 
-    function handleExport(event)
-    {
+    function handleExport() {
 
     }
 
@@ -33,31 +29,7 @@ export function HomePage() {
 
                 <div className="w-full flex flex-col sm:flex-row gap-4">
 
-                    <section className="w-auto sm:w-[380px] flex-none space-y-6 rounded-lg p-6 shadow-sm bg-white">
-                        <h2 className="text-lg font-bold text-gray-600">
-                            Novo link
-                        </h2>
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                            <Input
-                                id="originalUrl"
-                                label="URL original"
-                                placeholder="https://exemplo.com"
-                            />
-                            <Input
-                                id="shortUrl"
-                                label="URL encurtada"
-                                prefix="brev.ly/"
-                                className="pl-1!"
-                            />
-                            <Button
-                                type="submit"
-                                className="w-full h-12"
-                                variant="primary"
-                            >
-                                Salvar Link
-                            </Button>
-                        </form>
-                    </section>
+                    <NewLink onSubmit={handleSubmit} />
 
                     <LinkList
                         data={data}
