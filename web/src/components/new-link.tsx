@@ -1,11 +1,22 @@
 import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
 import { Input } from "@/components/ui/input.tsx"
 import { Button } from "@/components/ui/button.tsx"
 
-type FormData = {
-    originalUrl: string
-    shortUrl: string
-}
+const schema = z.object({
+    originalUrl: z
+        .string()
+        .min(1, "URL original é obrigatória")
+        .url("Informe uma URL válida (ex: https://exemplo.com)"),
+    shortUrl: z
+        .string()
+        .min(1, "URL encurtada é obrigatória")
+        .min(3, "Mínimo de 3 caracteres")
+        .regex(/^[a-zA-Z0-9-_]+$/, "Use apenas letras, números, - ou _"),
+})
+
+type FormData = z.infer<typeof schema>
 
 type NewLinkProps = {
     onSubmit: (data: FormData) => void
@@ -18,7 +29,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<FormData>()
+    } = useForm<FormData>({ resolver: zodResolver(schema) })
 
     function onValid(data: FormData) {
         onSubmit(data)
@@ -36,13 +47,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
                     label="URL original"
                     placeholder="https://exemplo.com"
                     error={errors.originalUrl?.message}
-                    {...register("originalUrl", {
-                        required: "URL original é obrigatória",
-                        pattern: {
-                            value: /^https?:\/\/.+\..+/,
-                            message: "Informe uma URL válida (ex: https://exemplo.com)",
-                        },
-                    })}
+                    {...register("originalUrl")}
                 />
                 <Input
                     id="shortUrl"
@@ -50,17 +55,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
                     prefix="brev.ly/"
                     className="pl-1!"
                     error={errors.shortUrl?.message}
-                    {...register("shortUrl", {
-                        required: "URL encurtada é obrigatória",
-                        pattern: {
-                            value: /^[a-zA-Z0-9-_]+$/,
-                            message: "Use apenas letras, números, - ou _",
-                        },
-                        minLength: {
-                            value: 3,
-                            message: "Mínimo de 3 caracteres",
-                        },
-                    })}
+                    {...register("shortUrl")}
                 />
                 <Button
                     type="submit"
