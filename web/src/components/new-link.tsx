@@ -26,7 +26,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
     }
 
     return (
-        <section className="w-full sm:w-[380px] sm:flex-none space-y-6 rounded-lg p-6 shadow-sm bg-white">
+        <section className="w-full sm:w-[380px] sm:flex-none space-y-6 rounded-lg p-8 shadow-sm bg-white">
             <h2 className="text-lg font-bold text-gray-600">
                 Novo link
             </h2>

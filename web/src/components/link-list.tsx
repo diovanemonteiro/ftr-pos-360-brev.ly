@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button.tsx"
 import { DownloadSimpleIcon, LinkIcon } from "@phosphor-icons/react"
 import type { Link } from "@/types/link.ts"
+import * as React from "react";
 
 type LinkListProps = {
     data?: { links?: Link[]; total?: number }
@@ -12,10 +13,10 @@ type LinkListProps = {
 
 export function LinkList({ data, isLoading, isExporting, onExport, renderItem }: LinkListProps) {
     return (
-        <section className="w-auto sm:flex-1 rounded-lg shadow-sm bg-white divide-y divide-gray-200">
+        <section className="w-full sm:flex-1 rounded-lg shadow-sm bg-white space-y-5 p-8">
 
-            <div className="mb-4 flex items-center justify-between p-4">
-                <h2 className="text-lg font-bold text-gray-800">
+            <div className="flex items-center justify-between gap-4">
+                <h2 className="text-lg font-bold text-gray-800 truncate">
                     Meus links
                     {data?.total !== undefined ? (
                         <span className="ml-2 text-sm font-normal text-gray-400">
@@ -45,7 +46,7 @@ export function LinkList({ data, isLoading, isExporting, onExport, renderItem }:
                     </p>
                 </div>
             ) : (
-                <ul className="flex flex-col gap-3">
+                <ul className="flex flex-col border-t border-gray-200 divide-y divide-gray-200">
                     {data?.links?.map((link) => (
                         <li key={link.id}>
                             {renderItem(link)}

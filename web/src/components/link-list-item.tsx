@@ -20,21 +20,22 @@ export function LinkListItem({ link, onDelete }: LinkListItemProps) {
     }
 
     return (
-        <div className="flex items-center justify-between gap-4 px-4 py-3">
-            <div className="flex flex-col gap-0.5 min-w-0">
+        <div className="flex items-center justify-between gap-4 py-4">
+            <div className="flex flex-col gap-1 min-w-0">
                 <a
                     href={`/${link.shortUrl}`}
-                    className="text-sm font-medium text-blue-600 hover:underline truncate"
+                    className="text-md font-semibold text-blue-base hover:underline truncate"
                 >
                     {shortUrlFull}
                 </a>
-                <span className="text-xs text-gray-400 truncate">{link.originalUrl}</span>
+                <span className="text-sm text-gray-500 truncate">
+                    {link.originalUrl}
+                </span>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
                 {link.accessCount !== undefined && (
-                    <span className="flex items-center gap-1 text-xs text-gray-400">
-                        <ChartBarIcon size={14} />
+                    <span className="flex items-center gap-1 text-sm text-gray-500">
                         {link.accessCount} acessos
                     </span>
                 )}
@@ -45,19 +46,19 @@ export function LinkListItem({ link, onDelete }: LinkListItemProps) {
                     title={copied ? "Copiado!" : "Copiar link"}
                     onClick={handleCopy}
                 >
-                    <CopyIcon size={14} />
+                    <CopyIcon size={16} />
                 </Button>
 
-                {onDelete && (
+                {/*{onDelete && (*/}
                     <Button
-                        variant="danger"
+                        variant="secondary"
                         className="h-8 w-8 p-0!"
                         title="Excluir link"
                         onClick={() => onDelete(link.id)}
                     >
-                        <TrashIcon size={14} />
+                        <TrashIcon size={16} />
                     </Button>
-                )}
+                {/*)}*/}
             </div>
         </div>
     )
