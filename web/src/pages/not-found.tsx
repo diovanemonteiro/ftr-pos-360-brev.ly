@@ -1,21 +1,18 @@
 import { Link } from 'react-router-dom'
+import logoSvg from "@/assets/404.svg";
 
 export function NotFound() {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 text-center">
-            <h1 className="text-6xl font-bold text-blue-600">404</h1>
-            <h2 className="mt-4 text-2xl font-semibold text-gray-800">
-                Link não encontrado
-            </h2>
-            <p className="mt-2 text-gray-500">
-                O link encurtado que você acessou não existe ou foi removido.
-            </p>
-            <Link
-                to="/"
-                className="mt-8 rounded-lg bg-blue-600 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-            >
-                Voltar para a Home
-            </Link>
+        <div className="w-full max-w-[580px] mx-auto px-3">
+            <div className="w-full flex flex-col items-center justify-center gap-6 px-5 py-12 sm:px-12 sm:py-16 rounded-lg bg-white">
+                <img src={logoSvg} alt="Brev.ly" className="w-48 h-21" />
+                <p className="text-xl font-bold text-gray-600">
+                    Link não encontrado
+                </p>
+                <p className="text-md font-semibold text-gray-500 text-center">
+                    O link que você está tentando acessar não existe, foi removido ou é uma URL inválida. Saiba mais em brev.ly.
+                </p>
+            </div>
         </div>
     )
 }
