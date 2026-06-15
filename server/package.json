@@ -12,7 +12,8 @@
     "@biomejs/biome": "^2.5.0",
     "@types/node": "^25.9.3",
     "tsx": "^4.22.4",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
