@@ -4,11 +4,14 @@ import * as schema from '@/infra/db/schemas'
 import { type Either, left, right } from '@/infra/shared/either'
 import { InvalidShortUrl } from './errors/invalid-short-url'
 import { ShortUrlAlreadyExists } from './errors/short-url-already-exists'
+import {z} from "zod";
 
-interface CreateLinkInput {
-  originalUrl: string
-  shortUrl: string
-}
+const createLinkInput = z.object({
+  originalUrl: z.string().url(),
+  shortUrl: z.string().min(3),
+})
+
+type CreateLinkInput = z.input<typeof createLinkInput>
 
 interface CreateLinkOutput {
   id: string
@@ -24,7 +27,7 @@ export async function createLink(
   input: CreateLinkInput
 ): Promise<Either<InvalidShortUrl | ShortUrlAlreadyExists, CreateLinkOutput>> {
 
-  const { originalUrl, shortUrl } = input
+  const { originalUrl, shortUrl } = createLinkInput.parse(input)
 
   if (!SHORT_URL_REGEX.test(shortUrl)) {
     return left(new InvalidShortUrl())
