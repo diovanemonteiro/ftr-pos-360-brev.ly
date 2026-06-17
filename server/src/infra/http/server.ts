@@ -11,6 +11,9 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import { createLinkRoute } from "@/infra/http/routes/create-link";
 import { getLinksRoute } from "@/infra/http/routes/get-links"
 import { deleteLinkRoute } from "@/infra/http/routes/delete-link"
+import { exportLinksRoute } from "@/infra/http/routes/export-links"
+import { getOriginalUrlRoute } from "@/infra/http/routes/get-original-url"
+import { incrementAccessRoute } from "@/infra/http/routes/increment-access"
 
 const server = fastify()
 
@@ -49,6 +52,9 @@ server.register(fastifySwaggerUi, {
 server.register(createLinkRoute)
 server.register(getLinksRoute)
 server.register(deleteLinkRoute)
+server.register(getOriginalUrlRoute)
+server.register(incrementAccessRoute)
+// server.register(exportLinksRoute)
 
 server.listen({ port: 3333, host: '0.0.0.0'}).then(() => {
   console.log('HTTP server running on port 3333')
