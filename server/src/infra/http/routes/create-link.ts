@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 
-export const createLink: FastifyPluginAsyncZod = async (server) => {
+export const createLinkRoute: FastifyPluginAsyncZod = async (server) => {
   server.post("/links", {
     schema: {
       summary: "Create a new link",
