@@ -4,8 +4,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRESQL_USERNAME=docker
-      - POSTGRESQL_PASSWORD=docker
-      - POSTGRESQL_DATABASE=db-brevly
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=db-brevly
     volumes:
       - "./docker:/docker-entrypoint-initdb.d"
