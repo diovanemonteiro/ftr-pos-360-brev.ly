@@ -1,39 +1,25 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
 import { Input } from "@/components/ui/input.tsx"
 import { Button } from "@/components/ui/button.tsx"
+import { useCreateLink } from "@/hooks/use-links.ts"
+import { createLinkSchema, type CreateLinkFormData } from "@/schemas/link-schema.ts";
 
-const schema = z.object({
-    originalUrl: z
-        .string()
-        .min(1, "URL original é obrigatória")
-        .url("Informe uma URL válida (ex: https://exemplo.com)"),
-    shortUrl: z
-        .string()
-        .min(1, "URL encurtada é obrigatória")
-        .min(3, "Mínimo de 3 caracteres")
-        .regex(/^[a-zA-Z0-9-_]+$/, "Use apenas letras, números, - ou _"),
-})
+export function NewLink() {
 
-type FormData = z.infer<typeof schema>
+    const { mutate: createLink, isPending: isCreating } = useCreateLink()
 
-type NewLinkProps = {
-    onSubmit: (data: FormData) => void
-    isLoading?: boolean
-}
-
-export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<FormData>({ resolver: zodResolver(schema) })
+    } = useForm<CreateLinkFormData>({
+        resolver: zodResolver(createLinkSchema),
+    })
 
-    function onValid(data: FormData) {
-        onSubmit(data)
-        reset()
+    function onSubmit(data: CreateLinkFormData) {
+        createLink(data, { onSuccess: () => reset() })
     }
 
     return (
@@ -41,7 +27,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
             <h2 className="text-lg font-bold text-gray-600">
                 Novo link
             </h2>
-            <form onSubmit={handleSubmit(onValid)} className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <Input
                     id="originalUrl"
                     label="URL original"
@@ -59,7 +45,7 @@ export function NewLink({ onSubmit, isLoading }: NewLinkProps) {
                 />
                 <Button
                     type="submit"
-                    loading={isLoading}
+                    loading={isCreating}
                     className="w-full h-12"
                     variant="primary"
                 >
