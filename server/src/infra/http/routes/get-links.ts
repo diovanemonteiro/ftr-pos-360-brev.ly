@@ -5,6 +5,8 @@ import { getLinks } from '@/app/functions/get-links'
 export const getLinksRoute: FastifyPluginAsyncZod = async (app) => {
   app.get('/links', {
     schema: {
+      summary: 'Get a list of all links',
+      tags: ['links'],
       querystring: z.object({
         page: z.coerce.number().min(1).default(1),
         pageSize: z.coerce.number().min(1).max(100).default(20),

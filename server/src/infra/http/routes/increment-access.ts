@@ -5,6 +5,8 @@ import { incrementAccess } from '@/app/functions/increment-access'
 export const incrementAccessRoute: FastifyPluginAsyncZod = async (app) => {
   app.patch('/links/:id/access', {
     schema: {
+      summary: 'Increment the access count for a short url',
+      tags: ['links'],
       params: z.object({
         id: z.string(),
       }),

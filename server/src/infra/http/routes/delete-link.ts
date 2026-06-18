@@ -5,6 +5,8 @@ import { deleteLink } from '@/app/functions/delete-link'
 export const deleteLinkRoute: FastifyPluginAsyncZod = async (app) => {
   app.delete('/links/:id', {
     schema: {
+      summary: 'Delete a short url',
+      tags: ['links'],
       params: z.object({
         id: z.string(),
       }),

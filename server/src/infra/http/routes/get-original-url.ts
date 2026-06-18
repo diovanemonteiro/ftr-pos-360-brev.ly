@@ -5,6 +5,8 @@ import { getOriginalUrl } from '@/app/functions/get-original-url'
 export const getOriginalUrlRoute: FastifyPluginAsyncZod = async (app) => {
   app.get('/links/:shortUrl', {
     schema: {
+      summary: 'Get the original URL for a given short URL',
+      tags: ['links'],
       params: z.object({
         shortUrl: z.string(),
       }),

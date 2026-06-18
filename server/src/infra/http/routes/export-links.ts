@@ -5,6 +5,8 @@ import { exportLinks } from '@/app/functions/export-links'
 export const exportLinksRoute: FastifyPluginAsyncZod = async (app) => {
   app.post('/links/exports', {
     schema: {
+      summary: 'Export all links as a CSV file',
+      tags: ['links'],
       response: {
         200: z.object({
           url: z.string(),
