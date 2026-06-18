@@ -2,16 +2,16 @@ import { Button } from "@/components/ui/button.tsx"
 import { DownloadSimpleIcon, LinkIcon } from "@phosphor-icons/react"
 import type { Link } from "@/types/link.ts"
 import * as React from "react";
+import { LinkListItem } from "@/components/link-list-item.tsx"
 
 type LinkListProps = {
     data?: { links?: Link[]; total?: number }
     isLoading?: boolean
     isExporting?: boolean
     onExport?: () => void
-    renderItem: (link: Link) => React.ReactNode
 }
 
-export function LinkList({ data, isLoading, isExporting, onExport, renderItem }: LinkListProps) {
+export function LinkList({ data, isLoading, isExporting, onExport }: LinkListProps) {
     return (
         <section className="w-full sm:flex-1 rounded-lg shadow-sm bg-white space-y-5 p-8">
 
@@ -49,7 +49,7 @@ export function LinkList({ data, isLoading, isExporting, onExport, renderItem }:
                 <ul className="flex flex-col border-t border-gray-200 divide-y divide-gray-200">
                     {data?.links?.map((link) => (
                         <li key={link.id}>
-                            {renderItem(link)}
+                            <LinkListItem link={link} />
                         </li>
                     ))}
                 </ul>
