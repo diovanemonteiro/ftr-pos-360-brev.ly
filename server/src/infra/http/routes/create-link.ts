@@ -28,13 +28,14 @@ export const createLinkRoute: FastifyPluginAsyncZod = async (server) => {
     const result = await createLink(request.body)
 
     if (!result.success) {
+
       if (result.error.name === 'ShortUrlAlreadyExists') {
         return reply.status(409).send({ message: result.error.message })
       }
+
       return reply.status(422).send({ message: result.error.message })
     }
 
     return reply.status(201).send(result.value)
-
   });
 };
