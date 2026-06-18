@@ -28,5 +28,8 @@ export async function getOriginalUrl(
     return left(new LinkNotFound())
   }
 
-  return right({ id: link.id, originalUrl: link.originalUrl })
+  return right({
+    id: link.id,
+    originalUrl: link.originalUrl
+  })
 }
