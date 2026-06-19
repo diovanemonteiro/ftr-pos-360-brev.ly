@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button.tsx"
 import { CopyIcon, TrashIcon, CheckIcon } from "@phosphor-icons/react"
 import { useDeleteLink } from "@/hooks/use-links.ts"
@@ -25,6 +26,7 @@ export function LinkListItem({ link } : LinkListItemProps) {
     async function handleCopy() {
         await navigator.clipboard.writeText(shortUrlFull)
         setCopied(true)
+        toast.info("Link copiado para a área de transferência!")
         setTimeout(() => setCopied(false), 2000)
     }
 
