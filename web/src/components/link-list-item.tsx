@@ -1,17 +1,26 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button.tsx"
 import { CopyIcon, TrashIcon, ChartBarIcon } from "@phosphor-icons/react"
+import { useDeleteLink } from "@/hooks/use-links.ts"
 import type { Link } from "@/types/link.ts"
 
 type LinkListItemProps = {
     link: Link
-    onDelete?: (id: string | number) => void
 }
 
-export function LinkListItem({ link, onDelete }: LinkListItemProps) {
+export function LinkListItem({ link } : LinkListItemProps) {
     const [copied, setCopied] = useState(false)
 
+    const { mutate: deleteLink, isPending: isDeleting } = useDeleteLink()
+
     const shortUrlFull = `brev.ly/${link.shortUrl}`
+
+    async function handleDelete(id: string) {
+        if (!window.confirm("Tem certeza que deseja excluir esse link?")) {
+            return
+        }
+        await deleteLink(id)
+    }
 
     async function handleCopy() {
         await navigator.clipboard.writeText(shortUrlFull)
@@ -49,16 +58,15 @@ export function LinkListItem({ link, onDelete }: LinkListItemProps) {
                     <CopyIcon size={16} />
                 </Button>
 
-                {/*{onDelete && (*/}
-                    <Button
-                        variant="secondary"
-                        className="h-8 w-8 p-0!"
-                        title="Excluir link"
-                        onClick={() => onDelete(link.id)}
-                    >
-                        <TrashIcon size={16} />
-                    </Button>
-                {/*)}*/}
+                <Button
+                    variant="secondary"
+                    className="h-8 w-8 p-0!"
+                    title="Excluir link"
+                    disabled={isDeleting}
+                    onClick={() => handleDelete(link.id)}
+                >
+                    <TrashIcon size={16} />
+                </Button>
             </div>
         </div>
     )
