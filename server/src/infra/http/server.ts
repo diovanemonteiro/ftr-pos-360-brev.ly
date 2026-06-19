@@ -33,7 +33,10 @@ server.setErrorHandler((error, request, reply) => {
   reply.status(500).send({ message: 'Internal Server Error' })
 })
 
-server.register(fastifyCors, { origin: '*' })
+server.register(fastifyCors, {
+  origin: '*',
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'],
+})
 
 server.register(fastifySwagger, {
   openapi: {
@@ -56,7 +59,7 @@ server.register(getOriginalUrlRoute)
 server.register(incrementAccessRoute)
 // server.register(exportLinksRoute)
 
-server.listen({ port: 3333, host: '0.0.0.0'}).then(() => {
+server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running on port 3333')
 }).catch((err) => {
   console.error('Error starting server:', err)
