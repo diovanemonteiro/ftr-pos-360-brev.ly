@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button.tsx"
-import { CopyIcon, TrashIcon, ChartBarIcon } from "@phosphor-icons/react"
+import { CopyIcon, TrashIcon, CheckIcon } from "@phosphor-icons/react"
 import { useDeleteLink } from "@/hooks/use-links.ts"
 import type { Link } from "@/types/link.ts"
 
@@ -55,7 +55,11 @@ export function LinkListItem({ link } : LinkListItemProps) {
                     title={copied ? "Copiado!" : "Copiar link"}
                     onClick={handleCopy}
                 >
-                    <CopyIcon size={16} />
+                    { copied ? (
+                        <CheckIcon size={16} />
+                    ) : (
+                        <CopyIcon size={16} />
+                    )}
                 </Button>
 
                 <Button
