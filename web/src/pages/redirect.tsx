@@ -1,19 +1,14 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import logoSvg from "@/assets/logo-icon.svg"
+import {useGetOriginalUrl, useIncrementAccess} from "@/hooks/use-links.ts";
 
 export function Redirect() {
+
     const { shortUrl } = useParams<{ shortUrl: string }>()
     const navigate = useNavigate()
-    // const { data, isLoading, isError } = useGetOriginalUrl(shortUrl ?? '')
-    // const { mutate: incrementAccess } = useIncrementAccess()
-
-    const data = { id: 1, originalUrl: "https://www.google.com.br" }
-    const isLoading = false
-    const isError = false
-    const incrementAccess = (_id: number, options?: { onSettled?: () => void }) => {
-        options?.onSettled?.()
-    }
+    const { data, isLoading, isError } = useGetOriginalUrl(shortUrl ?? '')
+    const { mutate: incrementAccess } = useIncrementAccess()
 
     useEffect(() => {
         if (isError) {
