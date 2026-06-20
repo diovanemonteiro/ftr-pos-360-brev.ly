@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { isAxiosError } from "axios"
+import { toast } from "sonner"
 import { Input } from "@/components/ui/input.tsx"
 import { Button } from "@/components/ui/button.tsx"
 import { useCreateLink } from "@/hooks/use-links.ts"
@@ -19,7 +21,16 @@ export function NewLink() {
     })
 
     function onSubmit(data: CreateLinkFormData) {
-        createLink(data, { onSuccess: () => reset() })
+        createLink(data, {
+            onSuccess: () => reset(),
+            onError: (error) => {
+                if (isAxiosError(error) && error.response?.data?.message === "Short URL already exists") {
+                    toast.error("Essa URL encurtada já está em uso. Escolha outra.")
+                    return
+                }
+                toast.error("Não foi possível criar o link. Tente novamente.")
+            },
+        })
     }
 
     return (
