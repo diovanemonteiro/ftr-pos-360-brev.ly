@@ -14,11 +14,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+    'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50'
 
   const variants = {
     primary: 'text-md font-semibold bg-blue-base text-white hover:bg-blue-dark',
-    secondary: 'text-sm font-semibold px-2! rounded-sm bg-secondary text-gray-700',
+    secondary: 'text-sm font-semibold px-2! rounded-sm bg-secondary text-gray-700 border border-secondary hover:border-blue-base',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   }
 
