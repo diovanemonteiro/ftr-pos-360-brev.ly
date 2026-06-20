@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button.tsx"
 import { DownloadSimpleIcon, LinkIcon } from "@phosphor-icons/react"
 import type { Link } from "@/types/link.ts"
 import * as React from "react";
-import { LinkListItem } from "@/components/link-list-item.tsx"
+import { LinkListItem, Spinner } from "@/components/link-list-item.tsx"
 
 type LinkListProps = {
     data?: { links?: Link[]; total?: number }
@@ -34,13 +34,14 @@ export function LinkList({ data, isLoading, isExporting, onExport }: LinkListPro
                 </Button>
             </div>
 
+            <div className="max-h-[27vh] sm:max-h-[calc(100vh-18rem)] overflow-y-auto">
             {isLoading ? (
-                <div className="flex justify-center py-8">
-                    <span className="size-6 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+                <div className="flex items-center justify-center py-8">
+                    <Spinner />
                 </div>
             ) : data?.links?.length === 0 ? (
                 <div className="flex flex-col items-center gap-3 py-10 text-gray-300">
-                    <LinkIcon size={32} className="text-gray-400" />
+                    <LinkIcon size={32} className="text-gray-400"/>
                     <p className="text-xs uppercase text-gray-500">
                         Ainda nao existem links cadastrados.
                     </p>
@@ -54,6 +55,7 @@ export function LinkList({ data, isLoading, isExporting, onExport }: LinkListPro
                     ))}
                 </ul>
             )}
+            </div>
 
         </section>
     )
