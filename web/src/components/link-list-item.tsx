@@ -46,6 +46,7 @@ export function LinkListItem({ link } : LinkListItemProps) {
                 <a
                     href={`/${link.shortUrl}`}
                     className="text-md font-semibold text-blue-base hover:underline truncate"
+                    target="_blank"
                 >
                     {shortUrlFull}
                 </a>
