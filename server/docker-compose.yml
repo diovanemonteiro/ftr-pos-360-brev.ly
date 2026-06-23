@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    image: brevly/app:v1
+    container_name: app-brevly
     ports:
       - "3333:3333"
     environment:
@@ -17,6 +19,7 @@ services:
 
   pg:
     image: bitnami/postgresql:latest
+    container_name: db-brevly
     ports:
       - "5432:5432"
     environment:
