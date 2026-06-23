@@ -58,7 +58,7 @@ server.register(getLinksRoute)
 server.register(deleteLinkRoute)
 server.register(getOriginalUrlRoute)
 server.register(incrementAccessRoute)
-// server.register(exportLinksRoute)
+server.register(exportLinksRoute)
 
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
