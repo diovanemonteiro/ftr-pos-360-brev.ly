@@ -25,7 +25,7 @@ export async function uploadFileToStorage({
 
   await upload.done()
 
-  const url = `https://${env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${env.CLOUDFLARE_BUCKET}/${fileName}`
+  const url = `${env.CLOUDFLARE_PUBLIC_URL}/${fileName}`
 
   return { url }
 }
