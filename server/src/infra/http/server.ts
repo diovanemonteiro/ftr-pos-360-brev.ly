@@ -60,10 +60,9 @@ server.register(getOriginalUrlRoute)
 server.register(incrementAccessRoute)
 // server.register(exportLinksRoute)
 
-runMigrations().then(() => {
-  server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
-    console.log('HTTP server running on port 3333')
-  }).catch((err) => {
-    console.error('Error starting server:', err)
-  })
+
+server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
+  console.log('HTTP server running on port 3333')
+}).catch((err) => {
+  console.error('Error starting server:', err)
 })
