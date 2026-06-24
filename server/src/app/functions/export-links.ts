@@ -14,6 +14,7 @@ export async function exportLinks(): Promise<Either<never, ExportLinksOutput>> {
 
   const csvStream = stringify({
     header: true,
+    delimiter: ';',
     columns: [
       { key: 'originalUrl', header: 'Original URL' },
       { key: 'shortUrl', header: 'Short URL' },
