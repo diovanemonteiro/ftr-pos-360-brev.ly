@@ -1,12 +1,12 @@
-import { count } from 'drizzle-orm'
+import { count, desc } from 'drizzle-orm'
 import { db } from '@/infra/db'
 import * as schema from '@/infra/db/schemas'
 import { type Either, right } from '@/infra/shared/either'
 import { z } from 'zod'
 
 const getLinksInput = z.object({
-  page: z.number().optional().default(1),
-  pageSize: z.number().optional().default(20),
+  page: z.coerce.number().optional().default(1),
+  pageSize: z.coerce.number().optional().default(20),
 })
 
 type GetLinksInput = z.input<typeof getLinksInput>
@@ -33,9 +33,9 @@ export async function getLinks(
     db
       .select()
       .from(schema.links)
+      .orderBy(schema.links.createdAt)
       .limit(pageSize)
-      .offset(offset)
-      .orderBy(schema.links.createdAt),
+      .offset(offset),
     db.select({ total: count() }).from(schema.links),
   ])
 
