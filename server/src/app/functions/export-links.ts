@@ -16,6 +16,7 @@ export async function exportLinks(): Promise<Either<never, ExportLinksOutput>> {
     header: true,
     delimiter: ';',
     columns: [
+      { key: 'id', header: 'ID' },
       { key: 'originalUrl', header: 'Original URL' },
       { key: 'shortUrl', header: 'Short URL' },
       { key: 'accessCount', header: 'Access Count' },
@@ -28,6 +29,7 @@ export async function exportLinks(): Promise<Either<never, ExportLinksOutput>> {
 
   for (const link of links) {
     csvStream.write({
+      id: link.id,
       originalUrl: link.originalUrl,
       shortUrl: link.shortUrl,
       accessCount: link.accessCount,
