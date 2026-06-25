@@ -7,7 +7,7 @@ export function Redirect() {
 
     const { shortUrl } = useParams<{ shortUrl: string }>()
     const navigate = useNavigate()
-    const { data, isLoading, isError } = useGetOriginalUrl(shortUrl ?? '')
+    const { data, isError } = useGetOriginalUrl(shortUrl ?? '')
     const { mutate: incrementAccess } = useIncrementAccess()
 
     useEffect(() => {
