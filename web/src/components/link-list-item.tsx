@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button.tsx"
-import { CopyIcon, TrashIcon, CheckIcon } from "@phosphor-icons/react"
+import { CopyIcon, TrashIcon } from "@phosphor-icons/react"
 import { useDeleteLink } from "@/hooks/use-links.ts"
 import type { Link } from "@/types/link.ts"
 
@@ -26,11 +26,11 @@ export function LinkListItem({ link } : LinkListItemProps) {
 
     const shortUrlFull = `${import.meta.env.VITE_FRONTEND_URL}/${link.shortUrl}`
 
-    async function handleDelete(id: string) {
+    async function handleDelete() {
         if (!window.confirm(`Você quer realmente apagar o link ${link.shortUrl}?`)) {
             return
         }
-        await deleteLink(id)
+        await deleteLink(link.id)
     }
 
     async function handleCopy() {
@@ -78,7 +78,7 @@ export function LinkListItem({ link } : LinkListItemProps) {
                     className="h-8 w-8"
                     title="Excluir link"
                     disabled={isDeleting}
-                    onClick={() => handleDelete(link.id)}
+                    onClick={handleDelete}
                 >
                     <TrashIcon className="size-4 shrink-0" />
                 </Button>
