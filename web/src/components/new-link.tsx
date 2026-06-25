@@ -25,9 +25,12 @@ export function NewLink() {
             onSuccess: () => reset(),
             onError: (error) => {
                 if (isAxiosError(error) && error.response?.data?.message === "Short URL already exists") {
-                    toast.error("Essa URL encurtada já está em uso. Escolha outra.")
+                    toast.error("Essa URL encurtada já existe.", {
+                        description: "Escolha outra URL encurtada e tente novamente.",
+                    })
                     return
                 }
+
                 toast.error("Não foi possível criar o link. Tente novamente.")
             },
         })
