@@ -1,5 +1,5 @@
 export type Link = {
-    id: string | number
+    id: string
     originalUrl: string
     shortUrl: string
     accessCount?: number
