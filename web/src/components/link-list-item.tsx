@@ -24,10 +24,10 @@ export function LinkListItem({ link } : LinkListItemProps) {
 
     const { mutate: deleteLink, isPending: isDeleting } = useDeleteLink()
 
-    const shortUrlFull = `brev.ly/${link.shortUrl}`
+    const shortUrlFull = `${import.meta.env.VITE_FRONTEND_URL}/${link.shortUrl}`
 
     async function handleDelete(id: string) {
-        if (!window.confirm("Tem certeza que deseja excluir esse link?")) {
+        if (!window.confirm(`Você quer realmente apagar o link ${link.shortUrl}?`)) {
             return
         }
         await deleteLink(id)
@@ -36,7 +36,9 @@ export function LinkListItem({ link } : LinkListItemProps) {
     async function handleCopy() {
         await navigator.clipboard.writeText(shortUrlFull)
         setCopied(true)
-        toast.info("Link copiado para a área de transferência!")
+        toast.info("Link copiado com sucesso", {
+            description: `O link ${link.shortUrl} foi copiado para a área de transferência.`,
+        })
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -44,7 +46,7 @@ export function LinkListItem({ link } : LinkListItemProps) {
         <div className="flex items-center justify-between gap-4 py-4">
             <div className="flex flex-col gap-1 min-w-0">
                 <a
-                    href={`/${link.shortUrl}`}
+                    href={shortUrlFull}
                     className="text-md font-semibold text-blue-base hover:underline truncate"
                     target="_blank"
                 >
