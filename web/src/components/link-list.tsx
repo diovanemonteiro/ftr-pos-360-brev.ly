@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button.tsx"
 import { DownloadSimpleIcon, LinkIcon } from "@phosphor-icons/react"
 import type { Link } from "@/types/link.ts"
-import * as React from "react";
 import { LinkListItem, Spinner } from "@/components/link-list-item.tsx"
 
 type LinkListProps = {
