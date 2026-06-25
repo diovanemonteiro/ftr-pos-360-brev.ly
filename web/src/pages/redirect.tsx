@@ -40,7 +40,7 @@ export function Redirect() {
                         O link será aberto automaticamente em alguns instantes.
                     </p>
                     <p className="text-md font-semibold text-gray-500 text-center">
-                        Não foi redirecionado? Acesse aqui
+                        Não foi redirecionado? <a className="text-md font-semibold text-blue-base hover:underline truncate" href={`${data?.originalUrl}`}>Acesse aqui</a>
                     </p>
                 </div>
             </div>
