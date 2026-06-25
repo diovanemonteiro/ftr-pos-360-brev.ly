@@ -10,7 +10,8 @@ export function NotFound() {
                     Link não encontrado
                 </p>
                 <p className="text-md font-semibold text-gray-500 text-center">
-                    O link que você está tentando acessar não existe, foi removido ou é uma URL inválida. Saiba mais em brev.ly.
+                    O link que você está tentando acessar não existe, foi removido ou é uma URL inválida.
+                    Saiba mais em <a className="text-md font-semibold text-blue-base hover:underline truncate" href={import.meta.env.VITE_FRONTEND_URL}>brev.ly</a>.
                 </p>
             </div>
         </div>
