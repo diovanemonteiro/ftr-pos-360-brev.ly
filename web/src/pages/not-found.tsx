@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import logoSvg from "@/assets/404.svg";
 
 export function NotFound() {
