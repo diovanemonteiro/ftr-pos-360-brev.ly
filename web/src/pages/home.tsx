@@ -1,6 +1,5 @@
 import { NewLink } from "@/components/new-link.tsx"
 import { LinkList } from "@/components/link-list.tsx"
-import { LinkListItem } from "@/components/link-list-item.tsx"
 import brevlyLogo from "@/assets/logo.svg"
 import { useLinks, useExportLinks } from "@/hooks/use-links.ts";
 
