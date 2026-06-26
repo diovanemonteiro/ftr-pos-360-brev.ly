@@ -31,7 +31,7 @@ export function LinkList({ data, isLoading, isExporting, onExport }: LinkListPro
                     </Button>
                 </div>
 
-                <div className="max-h-[27vh] sm:max-h-[calc(100vh-18rem)] overflow-y-auto">
+                <div className="max-h-[27vh] sm:max-h-[calc(100vh-18rem)] overflow-y-auto border-t border-gray-200">
                     {isLoading ? (
                         <div className="flex flex-col items-center justify-center py-8 space-y-2">
                             <Spinner />
@@ -45,7 +45,7 @@ export function LinkList({ data, isLoading, isExporting, onExport }: LinkListPro
                             </p>
                         </div>
                     ) : (
-                        <ul className="flex flex-col border-t border-gray-200 divide-y divide-gray-200">
+                        <ul className="flex flex-col divide-y divide-gray-200">
                             {data?.links?.map((link) => (
                                 <li key={link.id}>
                                     <LinkListItem link={link} />
