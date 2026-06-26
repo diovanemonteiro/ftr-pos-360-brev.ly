@@ -15,16 +15,16 @@ Copie o `.env.example` para `.env` e preencha os valores:
 cp .env.example .env
 ```
 
-| Variável | Descrição |
-| --- | --- |
-| `PORT` | Porta em que o servidor HTTP sobe (padrão `3333`) |
-| `NODE_ENV` | `development`, `test` ou `production` |
-| `DATABASE_URL` | String de conexão do PostgreSQL |
-| `CLOUDFLARE_ACCOUNT_ID` | ID da conta Cloudflare (upload de arquivos via R2) |
-| `CLOUDFLARE_ACCESS_KEY_ID` | Access key do R2 |
-| `CLOUDFLARE_SECRET_ACCESS_KEY` | Secret key do R2 |
-| `CLOUDFLARE_BUCKET` | Nome do bucket R2 |
-| `CLOUDFLARE_PUBLIC_URL` | URL pública usada para servir os arquivos do bucket |
+| Variável                       | Descrição                                           |
+|--------------------------------|-----------------------------------------------------|
+| `PORT`                         | Porta em que o servidor HTTP sobe (padrão `3000`)   |
+| `NODE_ENV`                     | `development`, `test` ou `production`               |
+| `DATABASE_URL`                 | String de conexão do PostgreSQL                     |
+| `CLOUDFLARE_ACCOUNT_ID`        | ID da conta Cloudflare                              |
+| `CLOUDFLARE_ACCESS_KEY_ID`     | Access key do R2                                    |
+| `CLOUDFLARE_SECRET_ACCESS_KEY` | Secret key do R2                                    |
+| `CLOUDFLARE_BUCKET`            | Nome do bucket R2                                   |
+| `CLOUDFLARE_PUBLIC_URL`        | URL pública usada para servir os arquivos do bucket |
 
 ## Modo desenvolvimento
 
@@ -52,16 +52,14 @@ cp .env.example .env
    npm run dev
    ```
 
-A API sobe em `http://localhost:3333`, com a documentação Swagger em `http://localhost:3333/docs`.
+A API sobe em `http://localhost:3000`, com a documentação Swagger em `http://localhost:3000/docs`.
 
 ### Outros comandos úteis
 
-| Comando | Descrição |
-| --- | --- |
-| `npm run db:studio` | Abre o Drizzle Studio para inspecionar o banco |
-| `npm run db:generate` | Gera uma nova migration a partir do schema |
-| `npm test` | Roda a suíte de testes (usa `.env.test`) |
-| `npm run db:migrate:test` | Roda as migrations no banco de testes |
+| Comando                   | Descrição                                      |
+|---------------------------|------------------------------------------------|
+| `npm run db:studio`       | Abre o Drizzle Studio para inspecionar o banco |
+| `npm run db:generate`     | Gera uma nova migration a partir do schema     |
 
 ## Modo produção
 
