@@ -39,3 +39,16 @@
 /*  -webkit-font-smoothing: antialiased;*/
 /*  -moz-osx-font-smoothing: grayscale;*/
 /*}*/
+
+@keyframes spinner-bar {
+  0% {
+    left: -6rem;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@utility animate-spinner-bar {
+  animation: spinner-bar 1.5s ease-in-out infinite;
+}
