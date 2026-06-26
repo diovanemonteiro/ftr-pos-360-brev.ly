@@ -20,11 +20,6 @@ export function LinkList({ data, isLoading, isExporting, onExport }: LinkListPro
                 <div className="flex items-center justify-between gap-4">
                     <h2 className="text-lg font-bold text-gray-800 truncate">
                         Meus links
-                        {data?.total !== undefined ? (
-                            <span className="ml-2 text-sm font-normal text-gray-400">
-                            ({data.total})
-                        </span>
-                        ) : null}
                     </h2>
                     <Button
                         variant="secondary"
