@@ -1,4 +1,4 @@
-# brev.ly — Server
+# Brev.ly — Server
 
 API do encurtador de links brev.ly, construída com Fastify, Drizzle ORM e PostgreSQL.
 
